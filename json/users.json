@@ -1,0 +1,31 @@
+{
+  "clerks_data": [
+    {
+      "clerk_id" : "1",
+      "clerk_name" : "Гуцул Л.Б.",
+      "tabno": "213123",
+      "rem" : "1"
+    },
+
+    {
+      "clerk_id" : "2",
+      "clerk_name" : "Иванов А.А.",
+      "tabno": "213123",
+      "rem" : "2"
+    },
+
+    {
+      "clerk_id" : "3",
+      "clerk_name" : "Сидоров В.А.",
+      "tabno": "213123",
+      "rem" : "3"
+    },
+
+    {
+      "clerk_id" : "4",
+      "clerk_name" : "Петров Г.С.",
+      "tabno": "213123",
+      "rem" : "3"
+    }
+  ]
+}
