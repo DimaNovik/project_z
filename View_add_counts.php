@@ -1,3 +1,14 @@
+<?
+  $conno = $_GET['conno'];
+  $fio = $_GET['fio'];
+  $adres = $_GET['adres'];
+  $num_lich = $_GET['num_lich'];
+  $zones = $_GET['zones'];
+  $type = $_GET['type'];
+
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,11 +48,11 @@
                         <img src="img/users.png" />
                     </p>
 
-                    <p align="right"><b>Григорашенко Оксана Николаевна</b></p>
-                    <p align="right"><b>Ананьев, Пушкина ул, 25 кв.</b></p>
-                    <p align="right"><b>Ос. рахунок:</b> 0/4909</p>
-                    <p align="right"><b>№ лічильн., розр., пл.:</b> 06246687  4   4078777</p>
-                    <p align="right"><b>Тип лічильника:</b> СО-2М <b>Зона:</b> 1</p>
+                    <p align="right"><b><? echo $fio ?></b></p>
+                    <p align="right"><b><? echo $adres ?></b></p>
+                    <p align="right"><b>Ос. рахунок:</b> <? echo $conno ?></p>
+                    <p align="right"><b>№ лічильн., розр., пл.:</b> <? echo $num_lich ?></p>
+                    <p align="right"><b>Тип лічильника:</b> <? echo $type ?> <b>Зона:</b> <? echo $zones ?></p>
                 </div>
 
             </div>

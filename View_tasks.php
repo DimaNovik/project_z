@@ -18,12 +18,10 @@ if(isset($_POST['submit_load'])) {
   if($json == '') { $count_tasks = 0;} else {
 
   // вычисляю количество заданий в файле json
-  $count_tasks = 0;
+  $count_all_tasks = 0;
   	foreach ($json['tasks'] as $task) {
-      $count_tasks++;
+      $count_all_tasks++;
     }
-
-
 }
 } else {
   echo '<p>Помилка завантаження. Поверніться назад та спробуйте знову.</p>';
@@ -74,7 +72,7 @@ if(isset($_POST['submit_load'])) {
 
                     <p align="right"><b>Доброго дня, <? echo $clerk_name; ?></b></p>
                     <p align="right"><b>Сьогодні:</b> <? date_default_timezone_set('Europe/Kiev'); echo date('d.m.Y'); ?></p>
-                    <p align="right"><b>Кількість завдань для обробки:</b> <span class="count_tasks"><? echo $count_tasks; ?></span></p>
+                    <p align="right"><b>Кількість завдань для обробки:</b> <span class="count_tasks"><? echo $count_all_tasks; ?></span></p>
                 </div>
 
             </div>
@@ -97,14 +95,14 @@ if(isset($_POST['submit_load'])) {
 
                     <?php
 
-                      if ($count_tasks == 0) {
+                      if ($count_all_tasks == 0) {
                         echo "<p>Завдань на обрану дату не знайдено! Оберіть іншу дату</p>";
                       } else {
 
                       $output = "<div class='all_tasks'>";
                       $output .= "<ul>";
 
-                      $count_abonents = 0;
+
 
 
 
@@ -117,8 +115,17 @@ if(isset($_POST['submit_load'])) {
 
            	 						$output .= "<li><b>№ завдання:</b> ".$task['number']."</li>";
            	 						$output .= "<li><b>Дата:</b> ".$date_abonents."</li>";
-           	 						$output .= "<li class='cyrcle_count'><span>".$task['count']."</span></li>";
 
+
+                        if($task['number'] == $num_tasks)
+                        {
+                          $count_tasks = 0;
+                            foreach($task['abonents'] as $abonent) {
+                              $count_tasks++;
+                            }
+                        }
+
+                        $output .= "<li class='cyrcle_count'><span>".$count_tasks."</span></li>";
                         $output .= "</div></a>";
 
            	 					}

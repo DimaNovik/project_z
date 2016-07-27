@@ -17,14 +17,22 @@ $jsondata = file_get_contents("json/$rem-$clerkid-$date_tasks.json");
 
 $json = json_decode($jsondata, true);
 
-if($json == '') { $count_tasks = 0; } else {
+$count_abon = 0;
 
-// вычисляю количество заданий в файле json
-// $count_tasks = 0;
-//   foreach ($json['abonents'] as $task) {
-//     $count_tasks++;
-//   }
+if($json == '') { $count_abon = 0; } else {
 
+  foreach($json['tasks'] as $item)
+  {
+
+  if($item['number'] == $num)
+  {
+
+    foreach($item['abonents'] as $abonent) {
+
+      $count_abon++;
+    }
+  }
+}
 
 }
 
@@ -76,7 +84,7 @@ if($json == '') { $count_tasks = 0; } else {
                     <p align="right"><b>Доброго дня, <? echo $clerk_name?></b></p>
                     <p align="right"><b>№ завдання:</b> <? echo $num;?></p>
                     <p align="right"><b>Дата формування:</b> <? echo $date_abon;?></p>
-                    <p align="right"><b>Кількість абонентів для обробки:</b> <span class="count_tasks">25</span></p>
+                    <p align="right"><b>Кількість абонентів для обробки:</b> <span class="count_tasks"><? echo $count_abon; ?></span></p>
                 </div>
 
             </div>
@@ -110,7 +118,15 @@ if($json == '') { $count_tasks = 0; } else {
 
                             foreach($item['abonents'] as $abonent) {
 
-                            $output .= "<a href='/View_add_counts.php'><div class='link_tasks_abonents'>";
+                              // подготавливаем переменные для передачи к странице добавления показаний
+                            $conno=$abonent['conno'];
+                            $fio=$abonent['fio'];
+                            $adres=$abonent['adres'];
+                            $zones=$abonent['zones'];
+                            $num_lich=$abonent['num_lich'];
+                            $type=$abonent['type'];
+
+                            $output .= "<a href='/View_add_counts.php?conno=$conno&fio=$fio&adres=$adres&zones=$zones&num_lich=$num_lich&type=$type'><div class='link_tasks_abonents'>";
 
                             $output .= "<li><b>Ос. рахунок:</b> ".$abonent['conno']." </li>";
                             $output .= "<li><b>ПІБ споживача:</b> ".$abonent['fio']."</li>";
