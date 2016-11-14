@@ -1,0 +1,155 @@
+{
+  "offices": [
+    {
+      "officeValue" : "ures",
+      "name" : "Південний РЕМ"
+    },
+
+    {
+      "officeValue" : "pob_cres",
+      "name" : "Центральний РЕМ"
+    },
+
+    {
+      "officeValue" : "pob_ill",
+      "name" : "Іллічівський РЕМ"
+    },
+
+    {
+      "officeValue" : "sres",
+      "name" : "Північний РЕМ"
+    },
+
+    {
+      "officeValue" : "pob_anan",
+      "name" : "Ананьївський РЕМ"
+    },
+
+    {
+      "officeValue" : "pob_arciz",
+      "name" : "Арцизький РЕМ"
+    }
+    ,
+
+    {
+      "officeValue" : "pob_bal",
+      "name" : "Балтський РЕМ"
+    }
+    ,
+
+    {
+      "officeValue" : "pob_bdres",
+      "name" : "Білгород-Дністровський РЕМ"
+    },
+
+    {
+      "officeValue" : "pob_bel",
+      "name" : "Біляївський РЕМ"
+    },
+
+    {
+      "officeValue" : "pob_berez",
+      "name" : "Березівський РЕМ"
+    },
+
+    {
+      "officeValue" : "pob_bol",
+      "name" : "Болградський РЕМ"
+    },
+
+    {
+      "officeValue" : "pob_vmih",
+      "name" : "В.Михайлівський РЕМ"
+    },
+
+    {
+      "officeValue" : "pob_ivan",
+      "name" : "Іванівський РЕМ"
+    },
+
+    {
+      "officeValue" : "pob_izm",
+      "name" : "Ізмаїльський РЕМ"
+    },
+
+    {
+      "officeValue" : "pob_kl",
+      "name" : "Кілійський РЕМ"
+    },
+
+    {
+      "officeValue" : "pob_kod",
+      "name" : "Кодимський РЕМ"
+    },
+
+    {
+      "officeValue" : "pob_komint",
+      "name" : "Комінтернівський РЕМ"
+    },
+
+    {
+      "officeValue" : "pob_krokny",
+      "name" : "Кр.Окнянський РЕМ"
+    },
+
+    {
+      "officeValue" : "pob_ktres",
+      "name" : "Котовський РЕМ"
+    },
+
+    {
+      "officeValue" : "pob_lub",
+      "name" : "Любашівський РЕМ"
+    },
+
+    {
+      "officeValue" : "pob_nik",
+      "name" : "Миколаївський РЕМ"
+    },
+
+    {
+      "officeValue" : "pob_ovid",
+      "name" : "Овідіопольський РЕМ"
+    },
+
+    {
+      "officeValue" : "pob_razd",
+      "name" : "Роздільнянський РЕМ"
+    },
+
+    {
+      "officeValue" : "pob_reni",
+      "name" : "Ренійський РЕМ"
+    },
+
+    {
+      "officeValue" : "pob_sar",
+      "name" : "Саратський РЕМ"
+    },
+
+    {
+      "officeValue" : "pob_savr",
+      "name" : "Савранський РЕМ"
+    },
+
+    {
+      "officeValue" : "pob_tarut",
+      "name" : "Тарутинський РЕМ"
+    },
+
+    {
+      "officeValue" : "pob_tat",
+      "name" : "Татарбунарський РЕМ"
+    },
+
+    {
+      "officeValue" : "pob_frres",
+      "name" : "Фрунзівський РЕМ"
+    },
+
+    {
+      "officeValue" : "pob_shres",
+      "name" : "Ширяївський РЕМ"
+    }
+  ]
+}

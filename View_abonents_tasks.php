@@ -1,39 +1,80 @@
-<?
-$rem = $_GET['rem'];
-$clerkid = $_GET['clerkid'];
-$date_tasks = $_GET['date_tasks'];
-$num = $_GET['num'];
-$clerk_name = $_GET['clerk'];
-$date_abon = $_GET['date_abon'];
+<?php
 
 
+if(isset($_POST['submit_load'])) {
+$name_file = $_POST['name_tasks'];
+$clerk_name = $_POST['nameClerk'];
+$clerkid = $_POST['clerkid'];
+
+//переменная для рефреша после добавления значений и возвращению к списку
 
 //преобразуем дату в нужній формат, для образения к json файлу
 
-
-
 // обращаемся к нужному json файлу
-$jsondata = file_get_contents("json/$rem-$clerkid-$date_tasks.json");
 
-$json = json_decode($jsondata, true);
+  //$nameFile = iconv("WINDOWS-1251", "UTF-8", $name_file);
+  $jsondata = file_get_contents("json/$name_file.json");
+
+
+
+$f = iconv("WINDOWS-1251", "UTF-8", $jsondata);
+$json = json_decode($f , true);
 
 $count_abon = 0;
 
 if($json == '') { $count_abon = 0; } else {
 
-  foreach($json['tasks'] as $item)
+  foreach($json as $item)
   {
 
-  if($item['number'] == $num)
+    $number = $item['number'];
+    $date_task = $item['date'];
+
+  if($item['number'] == $item['number'])
   {
 
     foreach($item['abonents'] as $abonent) {
 
-      $count_abon++;
+      if($abonent['flag'] == 0) {$count_abon++;}
+
     }
   }
 }
 
+}} else {
+  $name_file_get = $_GET['name_tasks'];
+  $clerkid=$_GET['clerkid'];
+
+  //$nameFile = iconv("WINDOWS-1251", "UTF-8", $name_file_get);
+  $jsondata = file_get_contents("json/$name_file_get.json");
+
+
+
+$f = iconv("WINDOWS-1251", "UTF-8", $jsondata);
+$json = json_decode($f , true);
+
+$count_abon = 0;
+
+if($json == '') { $count_abon = 0; } else {
+
+  foreach($json as $item)
+  {
+
+    $number = $item['number'];
+    $date_task = $item['date'];
+
+  if($item['number'] == $item['number'])
+  {
+
+    foreach($item['abonents'] as $abonent) {
+
+      if($abonent['flag'] == 0) {$count_abon++;}
+
+    }
+  }
+}
+
+}
 }
 
 ?>
@@ -79,12 +120,17 @@ if($json == '') { $count_abon = 0; } else {
                 <div class="info_card_abonents">
                     <p>
                         <img src="img/users.png" />
+                        <? echo "<a href='/View_load_tasks.php?clerk=$clerkid&clerkname=$clerk_name'><img src='img/list.png' class='list_tasks_img' /></a>"; ?>
                     </p>
 
                     <p align="right"><b>Доброго дня, <? echo $clerk_name?></b></p>
-                    <p align="right"><b>№ завдання:</b> <? echo $num;?></p>
-                    <p align="right"><b>Дата формування:</b> <? echo $date_abon;?></p>
-                    <p align="right"><b>Кількість абонентів для обробки:</b> <span class="count_tasks"><? echo $count_abon; ?></span></p>
+                    <p align="right"><b>№ завдання:</b> <? echo $number;?></p>
+                    <p align="right"><b>Дата формування:</b> <? echo  $date_task;?></p>
+                    <p align="right"><b>Кількість абонентів:</b> <span class="count_tasks"><? echo $count_abon; ?></span>
+
+                    </p>
+
+
                 </div>
 
             </div>
@@ -97,6 +143,7 @@ if($json == '') { $count_abon = 0; } else {
 
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
             <h2 class="list_tasks">Перелік абонентів:<hr/></h2>
         </div>
     </div>
@@ -107,16 +154,21 @@ if($json == '') { $count_abon = 0; } else {
 
                     <?php
 
+                    if($count_abon == 0) {
+                      echo "<h3>Завдання закінчено! Абонентів для обходу немає. </h3>";
+                    } else {
                       $output = "<div class='all_tasks'>";
                       $output .= "<ul>";
 
 
-                      foreach($json['tasks'] as $item)
+                      foreach($json as $item)
                       {
-                          if($item['number'] == $num)
+                          if($item['number'] == $item['number'])
                           {
 
                             foreach($item['abonents'] as $abonent) {
+
+                              if($abonent['flag'] == 0) {
 
                               // подготавливаем переменные для передачи к странице добавления показаний
                             $conno=$abonent['conno'];
@@ -125,8 +177,13 @@ if($json == '') { $count_abon = 0; } else {
                             $zones=$abonent['zones'];
                             $num_lich=$abonent['num_lich'];
                             $type=$abonent['type'];
+                            $abonid=$abonent['abid'];
 
-                            $output .= "<a href='/View_add_counts.php?conno=$conno&fio=$fio&adres=$adres&zones=$zones&num_lich=$num_lich&type=$type'><div class='link_tasks_abonents'>";
+                            if ($name_file_get == '') {
+                              $output .= "<a href='/View_add_counts.php?conno=$conno&fio=$fio&adres=$adres&zones=$zones&num_lich=$num_lich&type=$type&file=$name_file&abid=$abonid&clerkid=$clerkid'><div class='link_tasks_abonents'>";
+                            } else {
+                              $output .= "<a href='/View_add_counts.php?conno=$conno&fio=$fio&adres=$adres&zones=$zones&num_lich=$num_lich&type=$type&file=$name_file_get&abid=$abonid&clerkid=$clerkid'><div class='link_tasks_abonents'>";
+                            }
 
                             $output .= "<li><b>Ос. рахунок:</b> ".$abonent['conno']." </li>";
                             $output .= "<li><b>ПІБ споживача:</b> ".$abonent['fio']."</li>";
@@ -135,6 +192,8 @@ if($json == '') { $count_abon = 0; } else {
                             $output .= "<li class='cyrcle_count_abonents'><span>+</span></li>";
 
                             $output .= "</div></a>";
+
+                          }
                             }
                           }
                       }
@@ -143,7 +202,10 @@ if($json == '') { $count_abon = 0; } else {
                       $output .= "</ul>";
                       $output .= "</div>";
 
-           	 					echo $output;
+                      echo $output;
+                    }
+
+
            	 				?>
 
         </div>

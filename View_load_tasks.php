@@ -1,4 +1,4 @@
-<?
+<?php
 if(isset($_POST['submit'])) {
         $clerkid = $_POST['clerkname'];
         $password = $_POST['password'];
@@ -23,10 +23,13 @@ if(isset($_POST['submit'])) {
 
           } else {
 
-            header('Location: /index.php');
+            header('Location: index.php');
 
 
           }
+        } else {
+          $clerkid = $_GET['clerk'];
+          $clerk_name = $_GET['clerkname'];
         }
 ?>
 <!DOCTYPE html>
@@ -98,14 +101,44 @@ if(isset($_POST['submit'])) {
 
         <div class="col-xs-8 col-sm-8 col-md-6 col-lg-6">
 
-            <form id="load_tasks" action="view_tasks.php" method="post">
-                <p><label for="date_tasks" id="label_date">Оберіть дату завдання:</label></br>
-                <input type="date" name="date_tasks" id='date_tasks'></p>
-                <br/>
+            <form id="load_tasks" action="View_abonents_tasks.php" method="post">
+              <p><label for="name_tasks" id="label_date">Оберіть завдання:</label></br>
+
+                <?php
+                //Сканируем папку с json файлами для загрузки в select
+
+                      $files = scandir('json');
+
+                      $output = "<select name='name_tasks' class='placeholder'>";
+
+                        foreach ($files as $file) {
+
+                          $subfile = substr($file, 0, strrpos($file, '.' ));
+                          $clerk_file =  substr(  $subfile,-1 );
+
+
+
+                          if ($file != '.' && $file != '..' && $clerk_file == $clerkid) {
+                              $output .= "<option value='".$subfile."'>".$subfile."</option>";
+                          } else {
+                            $output .= "Для обраного контролера завдань не знайдено!";
+                          }
+
+                        }
+
+                      $output .= "</select> <br/>";
+
+                      //проверяю, есть ли файл для выбранного контролера
+
+                        echo $output;
+
+
+                ?>
+
                 <input type='hidden' value='<? echo $rem?>' name='rem' id='rem'>
                 <input type='hidden' value='<? echo $clerk_name?>' name='nameClerk' id='nameClerk'>
                 <input type='hidden' value='<? echo $clerkid?>' name='clerkid' id='clerkid'>
-                <p align="center"><input type="submit" id="submit_load" name='submit_load' value="Завантажити завдання"></p>
+                <p align="center"><input type="submit" id="submit_load" name='submit_load' value="Перейти до виконання"></p>
             </form>
 
         </div>

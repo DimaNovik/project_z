@@ -28,6 +28,7 @@
 <body>
 
 <div class="container">
+
     <div class="row position-login-form">
         <div class="col-xs-2 col-sm-2 col-md-3 col-lg-3">
 
@@ -38,7 +39,7 @@
             <form id="slick-login" action="View_load_tasks.php" method="post">
                 <p><label for="clerkname">Оберіть контролера:</label></p>
 
-                    <?
+                    <?php
                       // выбераем список из json файла всех пользователей в выпадающий список
                       $jsondata = file_get_contents("json/users.json");
                       $json = json_decode($jsondata, true);
